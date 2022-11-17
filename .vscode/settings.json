@@ -37,5 +37,10 @@
       "path": "home\\freakeinstein\\.local\\share\\jupyter\\kernels\\javascript\\kernel.json",
       "type": "jupyterKernelspec"
     }
-  ]
+  ],
+  "files.associations": {
+    "iostream": "cpp",
+    "ostream": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "Disabled"
 }
