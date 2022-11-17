@@ -192,6 +192,10 @@ int main(){
     printRecord(komC,48);
 
     quickSort(komC,0,47);
+    
+    cout <<endl;
+    cout << "Tekan ENTER untuk menampilkan data setelah Sorting";
+    cin.ignore();
     cout << endl;
     cout << "DATA SETELAH SORTING"<< endl;
     cout <<"----------------------------------------------" <<endl;

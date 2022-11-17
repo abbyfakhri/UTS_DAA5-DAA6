@@ -75,12 +75,15 @@ void inputInventory(vector <produk>&list){
         cin >> temp.jumlahItem;
 
         list.push_back(temp);
+
+        cout << endl;
         cout << "lanjut input (a): "<< endl;
         cout << "berhenti input (b): "<< endl;
 
         cin >> opt;
 
     }
+    cout << endl;
 
     cout << "input selesai"<< endl;
 
@@ -122,8 +125,9 @@ void inputKeranjang(vector <produk>&list,vector <produk> &listInventory){
         else{
             cout << "produk "<<temp.namaItem<<" TIDAK ditemukan di inventory"<<endl;
         }
-        cout << endl;
+
         
+        cout  << endl;
         cout << "lanjut input (a): "<< endl;
         cout << "berhenti input (b): "<< endl;
 
@@ -195,7 +199,7 @@ void deleteItem(vector <produk> &listKeranjang){
     //int pos = listKeranjang.begin();
     int pos = 0;
     for(produk i: listKeranjang){
-        if (itemName.compare(i.namaItem)==0){
+        if (itemName.compare(i.namaItem)==0){   
             listKeranjang.erase(listKeranjang.begin()+pos);
             cout << "Produk "<<i.namaItem <<" Berhasil Dihapus"<< endl;
             
@@ -286,6 +290,7 @@ void demo(vector <produk> &listInventory, vector <produk> &listKeranjang){
 
 
 };
+
 
 
 int main(){
