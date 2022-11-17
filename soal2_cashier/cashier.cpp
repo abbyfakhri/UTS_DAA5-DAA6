@@ -32,6 +32,10 @@ class cashier{
         else{
                 cout << "INVALID FUNCTION ARGUMENT"<<endl;
             }
+
+        if(list.size() == 0){
+            cout << "ITEM KOSONG"<< endl;
+        }
         for(produk i: list){
             cout <<"nama item: " <<i.namaItem << endl;
             cout <<"harga/item: "<< i.hargaItem << endl;
@@ -181,6 +185,32 @@ void backtoMenu(){
     menu();
 }
 
+void deleteItem(vector <produk> &listKeranjang){
+    string itemName;
+    cout << "masukkan nama item yang ingin dihapus: ";
+    //getline(cin,itemName);
+
+    cin >> itemName;
+
+    //int pos = listKeranjang.begin();
+    int pos = 0;
+    for(produk i: listKeranjang){
+        if (itemName.compare(i.namaItem)==0){
+            listKeranjang.erase(listKeranjang.begin()+pos);
+            cout << "Produk "<<i.namaItem <<" Berhasil Dihapus"<< endl;
+            
+        }
+
+        pos++;
+    }
+
+    cout << "Produk "<<itemName << "Tidak Ditemukan" << endl;
+    
+    backtoMenu();
+    
+    
+}
+
 public:
 
 void menu(){
@@ -196,6 +226,7 @@ void menu(){
     cout << "6. Tampilkan Isi Inventory" << endl;
     cout << "7. Kembali ke menu" << endl;
     cout << "8. Akhiri Program"<< endl;
+    cout << "9. Hapus item" << endl;
     
     cout <<endl;
     cout << "Pilih Menu: ";
@@ -229,7 +260,9 @@ void menu(){
         cout << "program selesai"<<endl;
         exit(10);
         break;
-
+    case 9:
+        deleteItem(listInventory);
+        break;
     default:
         cout << "Input Invalid" << endl;
         backtoMenu();
