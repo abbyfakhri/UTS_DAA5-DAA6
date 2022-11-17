@@ -3,30 +3,46 @@
 #include <stdlib.h>
 using namespace std;
 
-struct produk{
-    string namaItem;
-    double hargaItem;
-    int jumlahItem;
-};
 
-void display(vector <produk> &list,string nama){
-    if(nama == "keranjang"){
-        cout << "Daftar item pada Keranjang"<<endl;
+
+class cashier{
+
+    private:
+
+    struct produk{
+        string namaItem;
+        double hargaItem;
+        int jumlahItem;
+    };
+
+    vector <produk> listInventory;
+    vector <produk> listKeranjang;
+
+    void display(vector <produk> &list,string nama){
+        if(nama == "keranjang"){
+            cout << endl;
+                cout << "Daftar item pada Keranjang"<<endl;
+                cout << endl;
+            }
+        else if(nama == "inventory"){
+            cout << endl;
+                cout << "Daftar item pada Inventory"<<endl;
+                cout << endl;
+            }
+        else{
+                cout << "INVALID FUNCTION ARGUMENT"<<endl;
+            }
+        for(produk i: list){
+            cout <<"nama item: " <<i.namaItem << endl;
+            cout <<"harga/item: "<< i.hargaItem << endl;
+            cout << "jumlah item: "<<i.jumlahItem << endl;
+            cout << "total harga item: "<<i.jumlahItem*i.hargaItem << endl;
+            cout << endl;
+        }
+
+        backtoMenu();
+
     }
-    else if(nama == "inventory"){
-        cout << "Daftar item pada Inventory"<<endl;
-    }
-    else{
-        cout << "INVALID FUNCTION ARGUMENT"<<endl;
-    }
-    for(produk i: list){
-        cout <<"nama item: " <<i.namaItem << endl;
-        cout <<"harga/item: "<< i.hargaItem << endl;
-        cout << "jumlah item: "<<i.jumlahItem << endl;
-        cout << "total harga item: "<<i.jumlahItem*i.hargaItem << endl;
-        cout << endl;
-    }
-}
 
 
 
@@ -34,10 +50,11 @@ void totalHarga(vector <produk> &list){
     
     double sum = 0;
     for(produk i:list){
-        sum = sum + (i.jumlahItem*i.hargaItem);
-    }
+            sum = sum + (i.jumlahItem*i.hargaItem);
+        }
     
     cout << "Total Harga = "<<sum << endl;
+    backtoMenu();
     
 }
 
@@ -64,21 +81,26 @@ void inputInventory(vector <produk>&list){
     cout << "input selesai"<< endl;
 
     cout << endl;
+
+    backtoMenu();
     
 }
 
-bool isExist(produk *temp,vector <produk> listInventory){
+bool isExist(produk *temp,vector <produk> &listInventory){
+    int res = 0;
     for(produk i:listInventory){
-        if(temp -> namaItem == i.namaItem ){
+        res = temp -> namaItem.compare(i.namaItem);
+        if(res == 0){
             temp -> hargaItem = i.hargaItem;
             return true;
         }
     }
 
     return false;
+
 }
 
-void inputKeranjang(vector <produk>&list,vector <produk> listInventory){
+void inputKeranjang(vector <produk>&list,vector <produk> &listInventory){
     produk temp;
     char opt = 'x';
 
@@ -102,14 +124,16 @@ void inputKeranjang(vector <produk>&list,vector <produk> listInventory){
         cout << "berhenti input (b): "<< endl;
 
         cin >> opt;
+
+        
     }
 
     cout << endl;
     cout << "input selesai"<< endl;
-    
 
     cout << endl;
     
+    backtoMenu();
 }
 
 void dummyInventoryData(vector <produk>&list){
@@ -148,41 +172,42 @@ void dummyKeranjangData(vector <produk> &list){
     list.push_back(temp);
 }
 
+void backtoMenu(){
+    cout << endl;
+    cout << "Tekan enter untuk kembali ke menu ";
+    cin.ignore();
+    cin.ignore();
 
-
-void demo(vector <produk> &listInventory, vector <produk> &listKeranjang){
-    
-    dummyInventoryData(listInventory);
-    //dummyKeranjangData(listKeranjang);
-    
-    display(listInventory,"inventory");
-    inputKeranjang(listKeranjang,listInventory);
-    display(listKeranjang,"keranjang");
-    totalHarga(listKeranjang);
-
+    menu();
 }
 
-void menu(vector <produk> &listInventory, vector <produk> &listKeranjang){
+public:
+
+void menu(){
     int opt = 0;
-    cout << "Pilih 6 untuk DEMO Program"<< endl;
+    cout << endl;
+    cout << "Pilih 4 untuk DEMO Program"<< endl;
     cout << endl;
     cout << "1. Masukkan Daftar Belanja"<<endl;
     cout << "2. Hitung Total Belanja"<<endl;
     cout << "3. Masukkan Produk Baru ke dalam Inventory"<<endl;
     cout << "4. Demo Program"<< endl;
-    cout << "5. Kembali ke menu" << endl;
-    cout << "6. Akhiri Program"<< endl;
+    cout << "5. Tampilkan Isi Keranjang" << endl;
+    cout << "6. Tampilkan Isi Inventory" << endl;
+    cout << "7. Kembali ke menu" << endl;
+    cout << "8. Akhiri Program"<< endl;
     
-
+    cout <<endl;
     cout << "Pilih Menu: ";
     cin >> opt;
+    cout << opt << endl;
 
     // add switch case for menu later
 
     switch (opt)
     {
     case 1:
-        inputKeranjang(listInventory,listKeranjang);
+        inputKeranjang(listKeranjang,listInventory);
         break;
     case 2:
         totalHarga(listKeranjang);
@@ -194,26 +219,45 @@ void menu(vector <produk> &listInventory, vector <produk> &listKeranjang){
         demo(listInventory,listKeranjang);
         break;
     case 5:
-        menu(listInventory,listKeranjang);
-        break;
+        display(listKeranjang,"keranjang");
     case 6:
+        display(listInventory,"inventory");
+    case 7:
+        backtoMenu();
+        break;
+    case 8:
         cout << "program selesai"<<endl;
         exit(10);
         break;
 
     default:
         cout << "Input Invalid" << endl;
+        backtoMenu();
         break;
     }
     
 }
 
+void demo(vector <produk> &listInventory, vector <produk> &listKeranjang){
+    cout << endl;
+    dummyInventoryData(listInventory);
+    display(listInventory,"inventory");
+    inputKeranjang(listKeranjang,listInventory);
+    display(listKeranjang,"keranjang");
+    totalHarga(listKeranjang);
+
+    backtoMenu();
+    
+
+}
+
+
+};
+
 
 int main(){
-    // main variables
-    vector <produk> listInventory;
-    vector <produk> listKeranjang;
-
-    menu(listInventory,listKeranjang);
+    
+    cashier counter1;
+    counter1.menu();
 
 }
