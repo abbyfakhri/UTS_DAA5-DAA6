@@ -12,6 +12,12 @@
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe"
 			],
+			"presentation": {
+				"echo": false,
+                "reveal": "always",
+                "focus": true,
+                "clear": true                        
+            },
 			"options": {
 				"cwd": "${fileDirname}"
 			},
@@ -20,6 +26,7 @@
 			],
 			"group": "build",
 			"detail": "compiler: C:\\ProgramData\\chocolatey\\bin\\g++.exe"
+			
 		}
 	]
 }
