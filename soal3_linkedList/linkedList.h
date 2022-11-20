@@ -214,4 +214,14 @@ string at(int n){
 };
 
 
+int randomValue(int range){
+	int a;
+	
+		a=(rand()%range)+1;
+		return a;
+	
+	
+}
+
+
 
