@@ -2,17 +2,11 @@
 #include "linkedList.h"
 using namespace std;
 
-
-
-
-
 class musicPlayer{
 
     public:
 
     linkedList list;
-
-    
 
     void showPlaylist(){
         list.displaylist();
@@ -32,7 +26,6 @@ class musicPlayer{
             else if(opt == 'b'){ 
                 music_control();
             }
-
 
     }
 
@@ -85,8 +78,6 @@ class musicPlayer{
         
 
         string opt2;
-        
-        
         
         while(opt >= 1 && opt <= n){
 
@@ -146,8 +137,26 @@ class musicPlayer{
         }
     }
 
+    void addPlaylist(){
+        string song;
+        while(true){
+            cout << endl;
+            cout << "ketik (finish) untuk mengakhiri input" << endl;
+            cout << endl;
+            cout << "Masukkan lagu: "; 
+            cin >> song;
+            
+            cout << endl;
 
+            if(song == "finish"){
+                return;
+            }
 
+            list.insertBack(song);
+        }
+
+        
+    }
 
     
 };
@@ -181,45 +190,39 @@ void insert_demo_data_2(linkedList &list){
 
 
 
-void driver(){
-
+void demo(){
+    char opt;
     musicPlayer playlist1;
-    musicPlayer playlist2;
+    cout << endl;
 
-    insert_demo_data(playlist1.list);
-    insert_demo_data_2(playlist1.list);
+    cout << "this is a music player wanna be progrm, feel free to give insights :)" << endl;
 
+    cout << endl;
+
+    cout << "do you want use demo data (x) or using your own playlist data (y): ";
+    cin >> opt;
+
+    if(opt == 'x'){
+        insert_demo_data(playlist1.list);
+        insert_demo_data_2(playlist1.list);
+    }
+
+    else if(opt == 'y'){
+        playlist1.addPlaylist();
+    }
+
+    
+cout << "press enter to start program demo: "; cin.ignore();
+cout << endl;
 
     playlist1.loopTest();
-
-    
-
-    
+  
     
 }
 
 
-/*
-
-
-features
-1. next 
-2. previous
-3. loop 
-4. shuffle  
-
-
-
-*/
-
-
-
 int main(){
-
-    
-driver();
-    
-
-
+   
+demo();
 
 }
