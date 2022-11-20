@@ -12,14 +12,15 @@ struct node{
     node *prev;
 };
 
-node *head = NULL;
-
 public:
+
+node *head = NULL;
 
 void insertBack(string newData){
     node *newNode = new node();
     newNode->nilai=newData;
-    newNode->next=NULL;
+    newNode->next = NULL;
+
     if (head == NULL){
         head = newNode;
     }
@@ -191,11 +192,11 @@ int listSize(){
 
 string at(int n){
     node*temp = head;
-    int i = 0;
+    int i = 1;
 
     if(temp!=NULL){
         
-        while(temp!=NULL && i < n){
+        while(temp != NULL && i <= n-1){
         i++;
         temp=temp->next;
         cout << endl;

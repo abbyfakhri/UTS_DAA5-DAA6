@@ -19,27 +19,30 @@ class musicPlayer{
     }
 
 
-    void playMusic(){
+    void playMusic(){   // no out from this function feature yet
         int opt = 0;
         int n = list.listSize();
         list.displaylist();
 
         cout << "pilih lagu yang ingin diputar (by Index): " << endl;
         cin >> opt;
-        opt = opt-1;
-
-        if(opt > n || opt < 1){
+        
+        if (opt >= 1 && opt <= n){
+                cout << endl;
+                cout << list.at(opt) <<" sedang dimainkan" << endl;
+                cout << endl;
+        }
+        else{
             cout << endl;
             cout << "lagu tidak ditemukan, coba lagi" << endl;
             cout << endl;
             playMusic();
             return;
         }
-
-        cout << endl;
-        cout << list.at(opt) <<" sedang dimainkan" << endl;
-        cout << endl;
+   
     }
+
+
 
     void loopTest(){
         while (true){
@@ -101,6 +104,18 @@ void driver(){
 }
 
 
+/*
+
+
+features
+1. next 
+2. previous
+3. loop 
+4. shuffle  
+
+
+
+*/
 
 
 
