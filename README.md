@@ -7,7 +7,7 @@
 
 4.  buat lah program data mahasiswa yang di urutkan berdasarkan nim
 
-Nama: Abby Fakhri Choiry
-NIM: 211401069
-Lab: DAA-5
+Nama: Abby Fakhri Choiry  
+NIM: 211401069  
+Lab: DAA-5  
 
